@@ -1,0 +1,1578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BLAQC - Gothic Fashion</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Gothic Theme Styles */
+        :root {
+            --main-bg: #0a0a0a;
+            --secondary-bg: #1a1a1a;
+            --accent-color: #8b0000;
+            --text-color: #e0e0e0;
+            --light-text: #ffffff;
+            --dark-text: #333333;
+            --border-color: #333333;
+            --success-color: #4CAF50;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Times New Roman', serif;
+        }
+        
+        body {
+            background-color: var(--main-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--secondary-bg);
+            padding: 1rem 2rem;
+            border-bottom: 1px solid var(--accent-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--light-text);
+            text-decoration: none;
+            font-family: 'Old English Text MT', 'Times New Roman', serif;
+            letter-spacing: 2px;
+        }
+        
+        .logo span {
+            color: var(--accent-color);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 2rem;
+            position: relative;
+        }
+        
+        nav ul li a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+        }
+        
+        nav ul li a:hover {
+            color: var(--accent-color);
+        }
+        
+        .auth-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .auth-btn {
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--accent-color);
+            border-radius: 0;
+            background: transparent;
+            color: var(--text-color);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .auth-btn.login {
+            background: var(--accent-color);
+        }
+        
+        .auth-btn:hover {
+            background: var(--accent-color);
+            color: var(--light-text);
+        }
+        
+        .cart-icon {
+            font-size: 1.5rem;
+            color: var(--text-color);
+            cursor: pointer;
+            margin-left: 1rem;
+            position: relative;
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: var(--accent-color);
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 80vh;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1551232864-3f0890e580d9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 2rem;
+        }
+        
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            font-family: 'Old English Text MT', 'Times New Roman', serif;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            max-width: 800px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--light-text);
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 0;
+            text-decoration: none;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #6b0000;
+        }
+        
+        /* Featured Products */
+        .featured {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            font-family: 'Old English Text MT', 'Times New Roman', serif;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 3px;
+            background-color: var(--accent-color);
+            margin: 1rem auto;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        
+        .product-card {
+            background-color: var(--secondary-bg);
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .product-image {
+            height: 300px;
+            overflow: hidden;
+        }
+        
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+        
+        .product-info {
+            padding: 1.5rem;
+        }
+        
+        .product-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .product-price {
+            font-size: 1.2rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+        
+        /* About Section */
+        .about {
+            padding: 4rem 2rem;
+            background-color: var(--secondary-bg);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .about-image {
+            height: 500px;
+            overflow: hidden;
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .about-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            font-family: 'Old English Text MT', 'Times New Roman', serif;
+        }
+        
+        .about-content p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+        
+        /* Founders Section */
+        .founders {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .founders-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+        
+        .founder-card {
+            background-color: var(--secondary-bg);
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid var(--border-color);
+        }
+        
+        .founder-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 1.5rem;
+            border: 3px solid var(--accent-color);
+        }
+        
+        .founder-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .founder-name {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent-color);
+        }
+        
+        .founder-role {
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+        
+        /* Roadmap Section */
+        .roadmap {
+            padding: 4rem 2rem;
+            background-color: var(--secondary-bg);
+        }
+        
+        .roadmap-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .timeline {
+            display: flex;
+            overflow-x: auto;
+            padding: 2rem 0;
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent-color) var(--secondary-bg);
+        }
+        
+        .timeline::-webkit-scrollbar {
+            height: 8px;
+        }
+        
+        .timeline::-webkit-scrollbar-track {
+            background: var(--secondary-bg);
+        }
+        
+        .timeline::-webkit-scrollbar-thumb {
+            background-color: var(--accent-color);
+            border-radius: 20px;
+        }
+        
+        .week {
+            flex: 0 0 120px;
+            margin-right: 1rem;
+            text-align: center;
+        }
+        
+        .week-header {
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+        
+        .days {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+        
+        .day {
+            width: 15px;
+            text-align: center;
+            font-size: 0.8rem;
+        }
+        
+        .tasks {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .task {
+            height: 20px;
+            background-color: var(--accent-color);
+            border-radius: 3px;
+            position: relative;
+        }
+        
+        .task:hover::after {
+            content: attr(data-task);
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--secondary-bg);
+            padding: 0.3rem 0.6rem;
+            border-radius: 3px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            border: 1px solid var(--border-color);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--secondary-bg);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: left;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            font-family: 'Old English Text MT', 'Times New Roman', serif;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-column ul li a {
+            color: var(--text-color);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--accent-color);
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-icons a {
+            color: var(--text-color);
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+        
+        .social-icons a:hover {
+            color: var(--accent-color);
+        }
+        
+        .copyright {
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            overflow-y: auto;
+        }
+        
+        .modal-content {
+            background-color: var(--secondary-bg);
+            margin: 2rem auto;
+            padding: 2rem;
+            max-width: 800px;
+            position: relative;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-color);
+        }
+        
+        /* Auth Modal */
+        .auth-forms {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        
+        .auth-form {
+            display: none;
+        }
+        
+        .auth-form.active {
+            display: block;
+        }
+        
+        .auth-tabs {
+            display: flex;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 2rem;
+        }
+        
+        .auth-tab {
+            padding: 1rem 2rem;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+        }
+        
+        .auth-tab.active {
+            border-bottom-color: var(--accent-color);
+            color: var(--accent-color);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 0.8rem;
+            background-color: var(--main-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+        }
+        
+        /* Cart Modal */
+        .cart-items {
+            margin: 2rem 0;
+        }
+        
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .cart-item-info {
+            display: flex;
+            align-items: center;
+        }
+        
+        .cart-item-img {
+            width: 80px;
+            height: 80px;
+            margin-right: 1rem;
+        }
+        
+        .cart-item-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .cart-item-quantity {
+            display: flex;
+            align-items: center;
+        }
+        
+        .quantity-btn {
+            background-color: var(--main-bg);
+            color: var(--text-color);
+            border: none;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+        }
+        
+        .quantity-input {
+            width: 50px;
+            text-align: center;
+            background-color: transparent;
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+            margin: 0 0.5rem;
+            padding: 0.3rem;
+        }
+        
+        .remove-item {
+            color: var(--accent-color);
+            cursor: pointer;
+            margin-left: 1rem;
+        }
+        
+        .cart-total {
+            text-align: right;
+            font-size: 1.3rem;
+            margin: 2rem 0;
+        }
+        
+        /* Payment Modal */
+        .payment-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .payment-option {
+            border: 1px solid var(--border-color);
+            padding: 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .payment-option:hover {
+            border-color: var(--accent-color);
+        }
+        
+        .payment-option.selected {
+            border-color: var(--accent-color);
+            background-color: rgba(139, 0, 0, 0.1);
+        }
+        
+        .payment-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .payment-details {
+            display: none;
+            margin-top: 2rem;
+        }
+        
+        .payment-details.active {
+            display: block;
+        }
+        
+        /* Success Message */
+        .success-message {
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .success-icon {
+            font-size: 4rem;
+            color: var(--success-color);
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+            }
+            
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .about-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-image {
+                height: 300px;
+            }
+            
+            .auth-buttons {
+                margin-top: 1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            nav ul li {
+                margin-left: 1rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .auth-tabs {
+                flex-direction: column;
+            }
+            
+            .auth-tab {
+                border-bottom: none;
+                border-left: 3px solid transparent;
+            }
+            
+            .auth-tab.active {
+                border-bottom: none;
+                border-left-color: var(--accent-color);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <a href="#" class="logo">BLA<span>QC</span></a>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#featured">Shop</a></li>
+                    <li><a href="#about">About</a></li>
+                   
+                    <li><a href="#roadmap">Roadmap</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="auth-buttons">
+                <button class="auth-btn login" id="login-btn">Login</button>
+                <button class="auth-btn" id="signup-btn">Sign Up</button>
+                <div class="cart-icon" id="cart-icon">
+                    🛒
+                    <span class="cart-count">0</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Embrace the Darkness</h1>
+        <p>Discover our exclusive collection of gothic-inspired clothing that blends elegance with edge.</p>
+        <a href="#featured" class="btn">Shop Now</a>
+    </section>
+
+   <!-- Featured Products -->
+<section class="featured" id="featured">
+    <h2 class="section-title">Featured Collections</h2>
+    <div class="products-grid">
+        <!-- Existing Product 1 -->
+        <div class="product-card">
+            <div class="product-image">
+                <img src="https://plus.unsplash.com/premium_photo-1673964714570-0df7b0afcd98?q=80&w=1972&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Gothic Dress">
+            </div>
+            <div class="product-info">
+                <h3 class="product-title">Raven's Embrace Dress</h3>
+                <p class="product-price">₹3,499</p>
+                <button class="btn add-to-cart" data-id="1" data-name="Raven's Embrace Dress" data-price="3499" data-image="https://images.unsplash.com/photo-1551232864-3f0890e580d9?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80">Add to Cart</button>
+            </div>
+        </div>
+        
+        <!-- Existing Product 2 -->
+        <div class="product-card">
+            <div class="product-image">
+                <img src="https://images.unsplash.com/photo-1524860769472-246b6afea403?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Gothic Jacket">
+            </div>
+            <div class="product-info">
+                <h3 class="product-title">Nocturnal Leather Jacket</h3>
+                <p class="product-price">₹5,999</p>
+                <button class="btn add-to-cart" data-id="2" data-name="Nocturnal Leather Jacket" data-price="5999" data-image="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80">Add to Cart</button>
+            </div>
+        </div>
+        
+        <!-- Existing Product 3 -->
+        <div class="product-card">
+            <div class="product-image">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMNpKLWpYyVEigckmaJVqHh51NJMv7i-MOMA&s" alt="Gothic Shirt">
+            </div>
+            <div class="product-info">
+                <h3 class="product-title">Shadow Weave Shirt</h3>
+                <p class="product-price">₹2,799</p>
+                <button class="btn add-to-cart" data-id="3" data-name="Shadow Weave Shirt" data-price="2799" data-image="https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80">Add to Cart</button>
+            </div>
+        </div>
+        
+        <!-- Existing Product 4 -->
+        <div class="product-card">
+            <div class="product-image">
+                <img src="https://plus.unsplash.com/premium_photo-1671149028241-8e25ffee90dc?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Gothic Skirt">
+            </div>
+            <div class="product-info">
+                <h3 class="product-title">Midnight Lace Skirt</h3>
+                <p class="product-price">₹3,199</p>
+                <button class="btn add-to-cart" data-id="4" data-name="Midnight Lace Skirt" data-price="3199" data-image="https://images.unsplash.com/photo-1539533018447-63fcce2678e4?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80">Add to Cart</button>
+            </div>
+        </div>
+
+        <!-- New Product 5 -->
+        <div class="product-card">
+            <div class="product-image">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlkuaKHyvUnj78g3knjJsD9UmJkBAIAeZYrA&s" alt="Gothic Corset">
+            </div>
+            <div class="product-info">
+                <h3 class="product-title">Eclipse Corset</h3>
+                <p class="product-price">₹4,299</p>
+                <button class="btn add-to-cart" data-id="5" data-name="Eclipse Corset" data-price="4299" data-image="https://images.unsplash.com/photo-1601758123920-1c1c1c1c1c1c?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80">Add to Cart</button>
+            </div>
+        </div>
+
+        <!-- New Product 6 -->
+        <div class="product-card">
+            <div class="product-image">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRVk7eN7LhJdAavW_wFYsXeth1PWuUkl9nHw&s" alt="Gothic Trousers">
+            </div>
+            <div class="product-info">
+                <h3 class="product-title">Phantom Trousers</h3>
+                <p class="product-price">₹3,999</p>
+                <button class="btn add-to-cart" data-id="6" data-name="Phantom Trousers" data-price="3999" data-image="https://images.unsplash.com/photo-1601758123920-2c2c2c2c2c2c?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80">Add to Cart</button>
+            </div>
+        </div>
+
+        <!-- New Product 7 -->
+        <div class="product-card">
+            <div class="product-image">
+                <img src="https://techwearofficial.com/cdn/shop/files/Yamamoto-Wizard-Gothic-Cape-Coat_1.jpg?v=1696756217&width=720" alt="Gothic Cape">
+            </div>
+            <div class="product-info">
+                <h3 class="product-title">Wraith Cape</h3>
+                <p class="product-price">₹99</p>
+                <button class="btn add-to-cart" data-id="7" data-name="Wraith Cape" data-price="99" data-image="https://images.unsplash.com/photo-1601758123920-3c3c3c3c3c3c?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80">Add to Cart</button>
+            </div>
+        </div>
+
+        <!-- New Product 8 -->
+        <div class="product-card">
+            <div class="product-image">
+                <img src="https://previews.123rf.com/images/janifest/janifest1612/janifest161200081/66658765-men-fashion-concept-man-wear-black-stylish-leather-boots-and-walk-outdoors-%C3%A2%E2%82%AC%C2%A8.jpg" alt="Gothic Boots">
+            </div>
+            <div class="product-info">
+                <h3 class="product-title">Grim Reaper Boots</h3>
+                <p class="product-price">₹4,999</p>
+                <button class="btn add-to-cart" data-id="8" data-name="Grim Reaper Boots" data-price="4999" data-image="https://images.unsplash.com/photo-1601758123920-4c4c4c4c4c4c?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="about-container">
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1517842645767-c639042777db?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="About BLAQC">
+            </div>
+            <div class="about-content">
+                <h2>Our Dark Legacy</h2>
+                <p>Founded in the shadows of 2010, BLAQC has been crafting gothic apparel that speaks to the soul of the night. Our designs blend Victorian elegance with modern edge, creating timeless pieces for those who embrace the darker aesthetic.</p>
+                <p>Each garment is meticulously crafted using premium materials, ensuring both style and comfort. We believe in ethical production and sustainable practices, so you can look good while doing good.</p>
+                <p>Join our coven of dark fashion enthusiasts and express your true self through our collections.</p>
+            </div>
+        </div>
+    </section>
+
+   
+
+    <!-- Roadmap Section -->
+    <section class="roadmap" id="roadmap">
+        <h2 class="section-title">Our Journey</h2>
+        <div class="roadmap-container">
+            <div class="timeline">
+                <div class="week">
+                    <div class="week-header">Week 01</div>
+                    <div class="days">
+                        <div class="day">M</div>
+                        <div class="day">T</div>
+                        <div class="day">W</div>
+                        <div class="day">T</div>
+                        <div class="day">F</div>
+                    </div>
+                    <div class="tasks">
+                        <div class="task" data-task="Task 01"></div>
+                        <div class="task" data-task="Task 02"></div>
+                        <div class="task" data-task="Task 03"></div>
+                    </div>
+                </div>
+                
+                <div class="week">
+                    <div class="week-header">Week 02</div>
+                    <div class="days">
+                        <div class="day">M</div>
+                        <div class="day">T</div>
+                        <div class="day">W</div>
+                        <div class="day">T</div>
+                        <div class="day">F</div>
+                    </div>
+                    <div class="tasks">
+                        <div class="task" data-task="Task 04"></div>
+                        <div class="task" data-task="Task 05"></div>
+                    </div>
+                </div>
+                
+                <div class="week">
+                    <div class="week-header">Week 03</div>
+                    <div class="days">
+                        <div class="day">M</div>
+                        <div class="day">T</div>
+                        <div class="day">W</div>
+                        <div class="day">T</div>
+                        <div class="day">F</div>
+                    </div>
+                    <div class="tasks">
+                        <div class="task" data-task="Task 06"></div>
+                        <div class="task" data-task="Task 07"></div>
+                        <div class="task" data-task="Task 08"></div>
+                    </div>
+                </div>
+                
+                <div class="week">
+                    <div class="week-header">Week 04</div>
+                    <div class="days">
+                        <div class="day">M</div>
+                        <div class="day">T</div>
+                        <div class="day">W</div>
+                        <div class="day">T</div>
+                        <div class="day">F</div>
+                    </div>
+                    <div class="tasks">
+                        <div class="task" data-task="Task 09"></div>
+                        <div class="task" data-task="Task 10"></div>
+                    </div>
+                </div>
+                
+                <div class="week">
+                    <div class="week-header">Week 05</div>
+                    <div class="days">
+                        <div class="day">M</div>
+                        <div class="day">T</div>
+                        <div class="day">W</div>
+                        <div class="day">T</div>
+                        <div class="day">F</div>
+                    </div>
+                    <div class="tasks">
+                        <div class="task" data-task="Task 11"></div>
+                    </div>
+                </div>
+                
+                <div class="week">
+                    <div class="week-header">Week 06</div>
+                    <div class="days">
+                        <div class="day">M</div>
+                        <div class="day">T</div>
+                        <div class="day">W</div>
+                        <div class="day">T</div>
+                        <div class="day">F</div>
+                    </div>
+                    <div class="tasks">
+                        <div class="task" data-task="Task 12"></div>
+                        <div class="task" data-task="Task 13"></div>
+                    </div>
+                </div>
+                
+                <div class="week">
+                    <div class="week-header">Week 07</div>
+                    <div class="days">
+                        <div class="day">M</div>
+                        <div class="day">T</div>
+                        <div class="day">W</div>
+                        <div class="day">T</div>
+                        <div class="day">F</div>
+                    </div>
+                    <div class="tasks">
+                        <div class="task" data-task="Task 14"></div>
+                        <div class="task" data-task="Task 15"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>BLAQC</h3>
+                <p>Embrace the darkness within. Gothic fashion for the modern soul.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#featured">Shop</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#founders">Founders</a></li>
+                    <li><a href="#roadmap">Roadmap</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Customer Service</h3>
+                <ul>
+                    <li><a href="#">Shipping Policy</a></li>
+                    <li><a href="#">Returns & Exchanges</a></li>
+                    <li><a href="#">Size Guide</a></li>
+                    <li><a href="#">FAQs</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Contact Us</h3>
+                <ul>
+                    <li>Email: contact@blaqc.com</li>
+                    <li>Phone: +91 98765 43210</li>
+                    <li>Address: 13 Dark Alley, Mumbai, India</li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 BLAQC. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Auth Modal -->
+    <div class="modal" id="auth-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="auth-tabs">
+                <div class="auth-tab active" data-tab="login">Login</div>
+                <div class="auth-tab" data-tab="signup">Sign Up</div>
+            </div>
+            
+            <div class="auth-forms">
+                <form class="auth-form active" id="login-form">
+                    <div class="form-group">
+                        <label for="login-email">Email</label>
+                        <input type="email" id="login-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Password</label>
+                        <input type="password" id="login-password" required>
+                    </div>
+                    <button type="submit" class="btn">Login</button>
+                </form>
+                
+                <!-- Updated Sign-Up Form -->
+<form class="auth-form" id="signup-form">
+    <div class="form-group">
+        <label for="signup-name">Full Name</label>
+        <input type="text" id="signup-name" required>
+    </div>
+    <div class="form-group">
+        <label for="signup-email">Email</label>
+        <input type="email" id="signup-email" required>
+    </div>
+    <div class="form-group">
+        <label for="signup-password">Password</label>
+        <input type="password" id="signup-password" required>
+    </div>
+    <div class="form-group">
+        <label for="signup-confirm">Confirm Password</label>
+        <input type="password" id="signup-confirm" required>
+    </div>
+    <div class="form-group">
+        <label for="signup-address">Address</label>
+        <input type="text" id="signup-address" placeholder="Enter your address" required>
+    </div>
+    <button type="submit" class="btn">Sign Up</button>
+</form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Modal -->
+    <div class="modal" id="cart-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Your Cart</h2>
+            <div class="cart-items" id="cart-items">
+                <!-- Cart items will be added here dynamically -->
+            </div>
+            <div class="cart-total">
+                <strong>Total: ₹<span id="cart-total">0</span></strong>
+            </div>
+            <button class="btn" id="checkout-btn">Proceed to Checkout</button>
+        </div>
+    </div>
+
+   <!-- Payment Modal -->
+<div class="modal" id="payment-modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2>Payment Options</h2>
+        
+        <div class="payment-options">
+            <div class="payment-option selected" data-method="bhim-upi">
+                <div class="payment-icon">
+                    <i class="fas fa-rupee-sign"></i>
+                </div>
+                <h3>BHIM UPI</h3>
+                <p>Pay via UPI apps like Google Pay, Paytm, PhonePe, etc.</p>
+            </div>
+            
+            <div class="payment-option" data-method="cod">
+                <div class="payment-icon">
+                    <i class="fas fa-money-bill-wave"></i>
+                </div>
+                <h3>Cash on Delivery</h3>
+                <p>Pay when you receive your order</p>
+            </div>
+        </div>
+        
+        <div class="payment-details active" id="bhim-upi-details">
+            <h3>Complete Your Payment</h3>
+            <p>You can pay using your preferred UPI app. Use the UPI ID below:</p>
+            <p><strong>UPI ID: malharbhosale303@okicici</strong></p>
+            <button class="btn" id="bhim-upi-pay-btn">Pay Now</button>
+        </div>
+        
+        <div class="payment-details" id="cod-details">
+            <h3>Cash on Delivery</h3>
+            <p>Pay with cash when your order is delivered. An additional ₹50 processing fee applies.</p>
+            <div class="form-group">
+                <label for="cod-address">Delivery Address</label>
+                <input type="text" id="cod-address" placeholder="Enter your delivery address" required>
+            </div>
+            <button class="btn" id="cod-confirm-btn">Confirm Order</button>
+        </div>
+    </div>
+</div>
+    <!-- Success Modal -->
+    <div class="modal" id="success-modal">
+        <div class="modal-content">
+            <div class="success-message">
+                <div class="success-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h2>Order Successful!</h2>
+                <p id="success-message-text">Your payment has been processed successfully. Your order will be shipped soon.</p>
+                <button class="btn" id="success-continue-btn">Continue Shopping</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // User Authentication System (Static)
+        const users = JSON.parse(localStorage.getItem('blaqc-users')) || [];
+        let currentUser = JSON.parse(localStorage.getItem('blaqc-current-user')) || null;
+
+        // Cart functionality
+        let cart = JSON.parse(localStorage.getItem('blaqc-cart')) || [];
+        
+        // DOM Elements
+        const cartIcon = document.getElementById('cart-icon');
+        const cartModal = document.getElementById('cart-modal');
+        const closeModal = document.querySelectorAll('.close-modal');
+        const cartItemsContainer = document.getElementById('cart-items');
+        const cartTotalElement = document.getElementById('cart-total');
+        const addToCartButtons = document.querySelectorAll('.add-to-cart');
+        const checkoutBtn = document.getElementById('checkout-btn');
+        const paymentModal = document.getElementById('payment-modal');
+        const successModal = document.getElementById('success-modal');
+        const paymentOptions = document.querySelectorAll('.payment-option');
+        const paymentDetails = document.querySelectorAll('.payment-details');
+        const razorpayPayBtn = document.getElementById('razorpay-pay-btn');
+        const codConfirmBtn = document.getElementById('cod-confirm-btn');
+        const successContinueBtn = document.getElementById('success-continue-btn');
+        const cartCount = document.querySelector('.cart-count');
+        const loginBtn = document.getElementById('login-btn');
+        const signupBtn = document.getElementById('signup-btn');
+        const authModal = document.getElementById('auth-modal');
+        const authTabs = document.querySelectorAll('.auth-tab');
+        const authForms = document.querySelectorAll('.auth-form');
+        const loginForm = document.getElementById('login-form');
+        const signupForm = document.getElementById('signup-form');
+        
+        // Update cart count
+        function updateCartCount() {
+            const count = cart.reduce((total, item) => total + item.quantity, 0);
+            cartCount.textContent = count;
+        }
+        
+        // Open cart modal
+        cartIcon.addEventListener('click', () => {
+            cartModal.style.display = 'block';
+            updateCartDisplay();
+        });
+        
+        // Close modals
+        closeModal.forEach(btn => {
+            btn.addEventListener('click', () => {
+                cartModal.style.display = 'none';
+                paymentModal.style.display = 'none';
+                successModal.style.display = 'none';
+                authModal.style.display = 'none';
+            });
+        });
+        
+        // Close modal when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target === cartModal) {
+                cartModal.style.display = 'none';
+            }
+            if (e.target === paymentModal) {
+                paymentModal.style.display = 'none';
+            }
+            if (e.target === successModal) {
+                successModal.style.display = 'none';
+            }
+            if (e.target === authModal) {
+                authModal.style.display = 'none';
+            }
+        });
+        
+        // Add to cart functionality
+        addToCartButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                if (!currentUser) {
+                    alert('Please login to add items to cart');
+                    authModal.style.display = 'block';
+                    return;
+                }
+                
+                const id = button.getAttribute('data-id');
+                const name = button.getAttribute('data-name');
+                const price = parseInt(button.getAttribute('data-price'));
+                const image = button.getAttribute('data-image');
+                
+                // Check if item already in cart
+                const existingItem = cart.find(item => item.id === id);
+                
+                if (existingItem) {
+                    existingItem.quantity += 1;
+                } else {
+                    cart.push({
+                        id,
+                        name,
+                        price,
+                        image,
+                        quantity: 1
+                    });
+                }
+                
+                localStorage.setItem('blaqc-cart', JSON.stringify(cart));
+                updateCartDisplay();
+                updateCartCount();
+                
+                // Show confirmation
+                alert(`${name} has been added to your cart!`);
+            });
+        });
+        
+        // Update cart display
+        function updateCartDisplay() {
+            cartItemsContainer.innerHTML = '';
+            
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = '<p>Your cart is empty.</p>';
+                cartTotalElement.textContent = '0';
+                return;
+            }
+            
+            let total = 0;
+            
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                
+                const cartItemElement = document.createElement('div');
+                cartItemElement.className = 'cart-item';
+                cartItemElement.innerHTML = `
+                    <div class="cart-item-info">
+                        <div class="cart-item-img">
+                            <img src="${item.image}" alt="${item.name}">
+                        </div>
+                        <div>
+                            <h4>${item.name}</h4>
+                            <p>₹${item.price}</p>
+                        </div>
+                    </div>
+                    <div class="cart-item-quantity">
+                        <button class="quantity-btn decrease" data-id="${item.id}">-</button>
+                        <input type="text" class="quantity-input" value="${item.quantity}" readonly>
+                        <button class="quantity-btn increase" data-id="${item.id}">+</button>
+                        <span class="remove-item" data-id="${item.id}">✕</span>
+                    </div>
+                    <div class="cart-item-total">
+                        ₹${itemTotal}
+                    </div>
+                `;
+                
+                cartItemsContainer.appendChild(cartItemElement);
+            });
+            
+            cartTotalElement.textContent = total;
+            
+            // Add event listeners to quantity buttons
+            document.querySelectorAll('.decrease').forEach(button => {
+                button.addEventListener('click', () => {
+                    const id = button.getAttribute('data-id');
+                    const item = cart.find(item => item.id === id);
+                    
+                    if (item.quantity > 1) {
+                        item.quantity -= 1;
+                    } else {
+                        cart = cart.filter(i => i.id !== id);
+                    }
+                    
+                    localStorage.setItem('blaqc-cart', JSON.stringify(cart));
+                    updateCartDisplay();
+                    updateCartCount();
+                });
+            });
+            
+            document.querySelectorAll('.increase').forEach(button => {
+                button.addEventListener('click', () => {
+                    const id = button.getAttribute('data-id');
+                    const item = cart.find(item => item.id === id);
+                    
+                    item.quantity += 1;
+                    localStorage.setItem('blaqc-cart', JSON.stringify(cart));
+                    updateCartDisplay();
+                    updateCartCount();
+                });
+            });
+            
+            document.querySelectorAll('.remove-item').forEach(button => {
+                button.addEventListener('click', () => {
+                    const id = button.getAttribute('data-id');
+                    cart = cart.filter(item => item.id !== id);
+                    localStorage.setItem('blaqc-cart', JSON.stringify(cart));
+                    updateCartDisplay();
+                    updateCartCount();
+                });
+            });
+        }
+        
+        // Checkout button
+        checkoutBtn.addEventListener('click', () => {
+            if (cart.length === 0) {
+                alert('Your cart is empty!');
+            } else {
+                if (!currentUser) {
+                    alert('Please login to proceed to checkout');
+                    authModal.style.display = 'block';
+                    return;
+                }
+                
+                cartModal.style.display = 'none';
+                paymentModal.style.display = 'block';
+            }
+        });
+        
+        // Payment method selection
+        paymentOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                // Remove selected class from all options
+                paymentOptions.forEach(opt => opt.classList.remove('selected'));
+                // Add to clicked option
+                option.classList.add('selected');
+                
+                // Hide all payment details
+                paymentDetails.forEach(detail => detail.classList.remove('active'));
+                // Show selected payment details
+                const method = option.getAttribute('data-method');
+                document.getElementById(`${method}-details`).classList.add('active');
+            });
+        });
+        
+    // BHIM UPI payment
+document.getElementById('bhim-upi-pay-btn').addEventListener('click', () => {
+    const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    const upiId = "malharbhosale303@okicici";
+    
+    // Create the UPI payment link
+    const paymentLink = `upi://pay?pa=${upiId}&pn=BLAQC%20Clothing&mc=1234&tid=txn1234567890&am=${total}&cu=INR&url=https://blaqc.com`;
+
+    // Open the UPI app
+    window.open(paymentLink, '_blank');
+
+    // Show success message
+    document.getElementById('success-message-text').textContent = 
+        `You have initiated a payment of ₹${total} via BHIM UPI. Please complete the payment in your UPI app.`;
+    successModal.style.display = 'block';
+    paymentModal.style.display = 'none';
+    
+    // Clear cart
+    cart = [];
+    localStorage.setItem('blaqc-cart', JSON.stringify(cart));
+    updateCartCount();
+});
+        
+       // COD confirmation
+codConfirmBtn.addEventListener('click', () => {
+    const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    const address = document.getElementById('cod-address').value;
+
+    if (!address) {
+        alert('Please enter a delivery address.');
+        return;
+    }
+
+    document.getElementById('success-message-text').textContent = 
+        `Your order for ₹${total} has been placed. Pay ₹${total + 50} when you receive your items at: ${address}.`;
+    successModal.style.display = 'block';
+    paymentModal.style.display = 'none';
+    
+    // Clear cart
+    cart = [];
+    localStorage.setItem('blaqc-cart', JSON.stringify(cart));
+    updateCartCount();
+});
+        // Continue shopping button
+        successContinueBtn.addEventListener('click', () => {
+            successModal.style.display = 'none';
+        });
+        
+        // Auth modal tabs
+        authTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const tabName = tab.getAttribute('data-tab');
+                
+                // Update active tab
+                authTabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                
+                // Update active form
+                authForms.forEach(form => form.classList.remove('active'));
+                document.getElementById(`${tabName}-form`).classList.add('active');
+            });
+        });
+        
+        // Login button
+        loginBtn.addEventListener('click', () => {
+            authModal.style.display = 'block';
+            // Activate login tab
+            authTabs.forEach(t => t.classList.remove('active'));
+            document.querySelector('[data-tab="login"]').classList.add('active');
+            authForms.forEach(form => form.classList.remove('active'));
+            loginForm.classList.add('active');
+        });
+        
+        // Signup button
+        signupBtn.addEventListener('click', () => {
+            authModal.style.display = 'block';
+            // Activate signup tab
+            authTabs.forEach(t => t.classList.remove('active'));
+            document.querySelector('[data-tab="signup"]').classList.add('active');
+            authForms.forEach(form => form.classList.remove('active'));
+            signupForm.classList.add('active');
+        });
+        
+        // Login form submission
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            
+            const user = users.find(u => u.email === email && u.password === password);
+            
+            if (user) {
+                currentUser = user;
+                localStorage.setItem('blaqc-current-user', JSON.stringify(user));
+                alert('Login successful!');
+                authModal.style.display = 'none';
+                // Update UI for logged in user
+                loginBtn.textContent = 'Logout';
+                loginBtn.onclick = function() {
+                    currentUser = null;
+                    localStorage.removeItem('blaqc-current-user');
+                    loginBtn.textContent = 'Login';
+                    loginBtn.onclick = function() {
+                        authModal.style.display = 'block';
+                        document.querySelector('[data-tab="login"]').classList.add('active');
+                        loginForm.classList.add('active');
+                    };
+                    alert('Logged out successfully');
+                };
+            } else {
+                alert('Invalid email or password');
+            }
+        });
+        
+        // Signup form submission
+signupForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const name = document.getElementById('signup-name').value;
+    const email = document.getElementById('signup-email').value;
+    const password = document.getElementById('signup-password').value;
+    const confirmPassword = document.getElementById('signup-confirm').value;
+    const address = document.getElementById('signup-address').value; // Get the address
+
+    if (password !== confirmPassword) {
+        alert('Passwords do not match');
+        return;
+    }
+    
+    if (users.some(u => u.email === email)) {
+        alert('Email already registered');
+        return;
+    }
+    
+    const newUser  = {
+        id: Date.now().toString(),
+        name,
+        email,
+        password,
+        address // Include the address in the user object
+    };
+    
+    users.push(newUser );
+    localStorage.setItem('blaqc-users', JSON.stringify(users));
+    currentUser  = newUser ;
+    localStorage.setItem('blaqc-current-user', JSON.stringify(newUser ));
+    
+    alert('Registration successful! You are now logged in.');
+    authModal.style.display = 'none';
+    
+    // Update UI for logged in user
+    loginBtn.textContent = 'Logout';
+    loginBtn.onclick = function() {
+        currentUser  = null;
+        localStorage.removeItem('blaqc-current-user');
+        loginBtn.textContent = 'Login';
+        loginBtn.onclick = function() {
+            authModal.style.display = 'block';
+            document.querySelector('[data-tab="login"]').classList.add('active');
+            loginForm.classList.add('active');
+        };
+        alert('Logged out successfully');
+    };
+});
+        
+        // Check if user is logged in on page load
+        if (currentUser) {
+            loginBtn.textContent = 'Logout';
+            loginBtn.onclick = function() {
+                currentUser = null;
+                localStorage.removeItem('blaqc-current-user');
+                loginBtn.textContent = 'Login';
+                loginBtn.onclick = function() {
+                    authModal.style.display = 'block';
+                    document.querySelector('[data-tab="login"]').classList.add('active');
+                    loginForm.classList.add('active');
+                };
+                alert('Logged out successfully');
+            };
+        }
+        
+        // Initialize cart count
+        updateCartCount();
+    </script>
+</body>
+</html>
